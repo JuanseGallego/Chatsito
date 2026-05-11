@@ -15,8 +15,13 @@ io.on('connection', (socket) => {
     console.log("Alguien se conecto")
     // Mensajes a todos
     socket.emit("bienvenida", "Bienvenido maquina fiera mastodonte tornillito")
+
     socket.on("mensaje", (mensaje) => {
-        console.log(mensaje)
+        // A todos los que esten conectados
+        // io.emit("mensaje", mensaje)
+        
+        // A todos menos a mi
+        socket.broadcast.emit("mensaje", mensaje)
     })
 
 } )
